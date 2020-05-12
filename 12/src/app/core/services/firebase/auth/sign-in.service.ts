@@ -17,7 +17,7 @@ export class SignInService {
 
   signInWithEmailAndPassword(email: string, password: string) {
     return new Observable<firebase.User>((observer) => {
-      this.ngFireAuth.auth
+      this.ngFireAuth
         .signInWithEmailAndPassword(email, password)
         .then((userCredentials) => {
           observer.next(userCredentials.user);
@@ -48,7 +48,7 @@ export class SignInService {
         .login(['public_profile', 'email'])
         .then((facebookResponse) => {
           const credential = firebase.auth.FacebookAuthProvider.credential(facebookResponse.authResponse.accessToken);
-          return this.ngFireAuth.auth.signInWithCredential(credential);
+          return this.ngFireAuth.signInWithCredential(credential);
         })
         .then((userCredentials) => {
           observer.next(userCredentials);
@@ -63,7 +63,7 @@ export class SignInService {
   signInWithFacebookWeb() {
     const facebookProvider = new firebase.auth.FacebookAuthProvider();
     return new Observable<firebase.auth.UserCredential>((observer) => {
-      this.ngFireAuth.auth
+      this.ngFireAuth
         .signInWithPopup(facebookProvider)
         .then((userCredentials) => {
           observer.next(userCredentials);

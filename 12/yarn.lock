@@ -188,10 +188,10 @@
   resolved "https://registry.yarnpkg.com/@angular/core/-/core-9.1.6.tgz#810b4bb960cc2a933b89969c4d0f5ac53535c241"
   integrity sha512-iXgPh5DebLwkMzLtQ6WKiv/mo4hpwMOwYex3O4F2CKToR2tKPnXbV5WC/ADGm0XYXiocSKQPiyL4ZrUjVeKEqA==
 
-"@angular/fire@^5.4.2":
-  version "5.4.2"
-  resolved "https://registry.yarnpkg.com/@angular/fire/-/fire-5.4.2.tgz#fb2d54935de0d83789e940e5f57a6ffc0e1ef4eb"
-  integrity sha512-QzB5d1wtqr9jxfsVNv2+569MlfK4/QrrpNy0IngOHdxS4FBbXqMOcx37iv1m2mzJv9zlGUddUX44IZP5Xfb3cw==
+"@angular/fire@~6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@angular/fire/-/fire-6.0.0.tgz#c1dbae9e78ed74af951fb7222108c444300a4d15"
+  integrity sha512-zWhaJaZPtfJKiNSb1I3WqqvopW0fN3S61w4PjPdsm5WME+9M9alP0zpRVclpbCU26LpBSLhrRrSLyn3ROlAOIw==
 
 "@angular/forms@~9.1.6":
   version "9.1.6"

@@ -11,7 +11,7 @@ import { environment } from '../../../../environments/environment';
 import { MyProfilePage } from './my-profile.page';
 import { routes } from './my-profile-routing.module';
 
-fdescribe('MyProfilePage', () => {
+describe('MyProfilePage', () => {
   let component: MyProfilePage;
   let fixture: ComponentFixture<MyProfilePage>;
 

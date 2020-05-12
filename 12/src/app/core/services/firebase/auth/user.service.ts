@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireFunctions } from '@angular/fire/functions';
-import { AngularFireStorage } from '@angular/fire/storage';
 import firebase from 'firebase/app';
 import { Observable } from 'rxjs';
 
@@ -14,7 +13,6 @@ export class UserService {
   constructor(
     private ngFireAuth: AngularFireAuth,
     private ngFireFunctions: AngularFireFunctions,
-    private ngFireStorage: AngularFireStorage,
     private signInService: SignInService
   ) {}
 
@@ -26,8 +24,8 @@ export class UserService {
    * @description
    * write user data to firestore
    */
-  updateUserData() {
-    const currentUser = this.ngFireAuth.auth.currentUser;
+  async updateUserData() {
+    const currentUser = await this.ngFireAuth.currentUser;
     const jsonUser = JSON.parse(JSON.stringify(currentUser));
     return this.ngFireFunctions.httpsCallable('updateUserData')({
       displayName: jsonUser.displayName,
@@ -38,13 +36,14 @@ export class UserService {
     });
   }
 
-  sendEmailVerification() {
-    return this.ngFireAuth.auth.currentUser.sendEmailVerification();
+  async sendEmailVerification() {
+    const currentUser = await this.ngFireAuth.currentUser;
+    return currentUser.sendEmailVerification();
   }
 
-  signInMethods() {
-    const email = this.ngFireAuth.auth.currentUser.email;
-    return this.ngFireAuth.auth.fetchSignInMethodsForEmail(email);
+  async signInMethods() {
+    const currentUser = await this.ngFireAuth.currentUser;
+    return this.ngFireAuth.fetchSignInMethodsForEmail(currentUser.email);
   }
 
   /**
@@ -53,7 +52,8 @@ export class UserService {
    */
   async setPassword(newPassword: string) {
     await this.signInService.signInWithFacebook().toPromise();
-    this.ngFireAuth.auth.currentUser.updatePassword(newPassword);
+    const currentUser = await this.ngFireAuth.currentUser;
+    currentUser.updatePassword(newPassword);
   }
 
   /**
@@ -61,9 +61,9 @@ export class UserService {
    * For user who use email and password
    */
   async updatePassword(currentPassword: string, newPassword: string) {
-    const email = this.ngFireAuth.auth.currentUser.email;
-    const credential = firebase.auth.EmailAuthProvider.credential(email, currentPassword);
-    await this.ngFireAuth.auth.currentUser.reauthenticateWithCredential(credential);
-    await this.ngFireAuth.auth.currentUser.updatePassword(newPassword);
+    const currentUser = await this.ngFireAuth.currentUser;
+    const credential = firebase.auth.EmailAuthProvider.credential(currentUser.email, currentPassword);
+    await currentUser.reauthenticateWithCredential(credential);
+    await currentUser.updatePassword(newPassword);
   }
 }

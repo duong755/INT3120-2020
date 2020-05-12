@@ -10,7 +10,7 @@ export class SignOutService {
 
   signOut() {
     return new Observable<any>((observer) => {
-      this.ngFireAuth.auth
+      this.ngFireAuth
         .signOut()
         .then(() => {
           observer.next();
