@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { TopicService, Topic } from 'src/app/core/services/firebase/firestore/topic.service';
+import { TopicService } from 'src/app/core/services/firebase/firestore/topic.service';
+import { map } from 'rxjs/operators';
+
+interface Topic {
+  id: string;
+  name: string;
+}
 
 @Component({
   selector: 'app-overview',
@@ -14,9 +20,16 @@ export class OverviewPage implements OnInit {
   ngOnInit() {
     this.topicService
       .allTopics()
-      .valueChanges()
-      .subscribe((result) => {
-        this.topics = result;
+      .snapshotChanges()
+      .pipe(
+        map((topics) => {
+          return topics.map((topic) => ({ id: topic.payload.doc.id, name: topic.payload.doc.data().name }));
+        })
+      )
+      .subscribe((topics) => {
+        this.topics = topics.sort((a, b) => {
+          return a.name.localeCompare(b.name);
+        });
       });
   }
 }

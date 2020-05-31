@@ -14,38 +14,8 @@
     </ion-button>
   </div>
   <div class="topics ion-padding-horizontal">
-    <ion-chip [outline]="true">
-      <ion-label>Arts and Humanities</ion-label>
-    </ion-chip>
-    <ion-chip [outline]="true">
-      <ion-label>Business</ion-label>
-    </ion-chip>
-    <ion-chip [outline]="true">
-      <ion-label>Computer Science</ion-label>
-    </ion-chip>
-    <ion-chip [outline]="true">
-      <ion-label>Data Science</ion-label>
-    </ion-chip>
-    <ion-chip [outline]="true">
-      <ion-label>Information Technology</ion-label>
-    </ion-chip>
-    <ion-chip [outline]="true">
-      <ion-label>Health</ion-label>
-    </ion-chip>
-    <ion-chip [outline]="true">
-      <ion-label>Math and Logic</ion-label>
-    </ion-chip>
-    <ion-chip [outline]="true">
-      <ion-label>Personal Development</ion-label>
-    </ion-chip>
-    <ion-chip [outline]="true">
-      <ion-label>Physical Science and Engineering</ion-label>
-    </ion-chip>
-    <ion-chip [outline]="true">
-      <ion-label>Social Sciences</ion-label>
-    </ion-chip>
-    <ion-chip [outline]="true">
-      <ion-label>Language Learning</ion-label>
+    <ion-chip [outline]="true" *ngFor="let topic of topics">
+      <ion-label>{{ topic.name }}</ion-label>
     </ion-chip>
   </div>
 
