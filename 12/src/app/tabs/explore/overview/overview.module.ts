@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { OverviewPageRoutingModule } from './overview-routing.module';
 
 import { OverviewPage } from './overview.page';
-import { CourseItemComponent } from './course-item/course-item.component';
+import { CourseItemComponent } from '../../../core/components/course-item/course-item.component';
 import { TopicService } from '../../../core/services/firebase/firestore/topic.service';
 import { CourseService } from '../../../core/services/firebase/firestore/course.service';
 
