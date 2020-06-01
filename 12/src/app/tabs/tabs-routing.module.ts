@@ -13,10 +13,6 @@ export const routes: Routes = [
         loadChildren: () => import('./learn/learn.module').then((m) => m.LearnModule)
       },
       {
-        path: 'recommended',
-        loadChildren: () => import('./recommended/recommended.module').then((m) => m.RecommendedModule)
-      },
-      {
         path: 'explore',
         loadChildren: () => import('./explore/explore.module').then((m) => m.ExploreModule)
       },
