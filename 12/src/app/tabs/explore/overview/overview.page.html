@@ -27,11 +27,7 @@
       </ion-text>
     </div>
     <div class="courses--list">
-      <app-course-item></app-course-item>
-      <app-course-item></app-course-item>
-      <app-course-item></app-course-item>
-      <app-course-item></app-course-item>
-      <app-course-item></app-course-item>
+      <app-course-item *ngFor="let course of popularCourses" [displayName]="course.profile.displayName" [organization]="course.profile.organization" [location]="course.profile.location" [topic]="course.profile.topic" [rate]="course.rate.point" [numberOfRate]="course.rate.count"></app-course-item>
     </div>
   </div>
 
@@ -43,11 +39,7 @@
       </ion-text>
     </div>
     <div class="courses--list">
-      <app-course-item></app-course-item>
-      <app-course-item></app-course-item>
-      <app-course-item></app-course-item>
-      <app-course-item></app-course-item>
-      <app-course-item></app-course-item>
+      <app-course-item *ngFor="let course of topRatedCourses" [displayName]="course.profile.displayName" [organization]="course.profile.organization" [location]="course.profile.location" [topic]="course.profile.topic" [rate]="course.rate.point" [numberOfRate]="course.rate.count"></app-course-item>
     </div>
   </div>
 </ion-content>

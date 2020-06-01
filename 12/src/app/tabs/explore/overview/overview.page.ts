@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { TopicService } from 'src/app/core/services/firebase/firestore/topic.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { TopicService } from '../../../core/services/firebase/firestore/topic.service';
+import { Course, CourseService } from '../../../core/services/firebase/firestore/course.service';
+import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 interface Topic {
@@ -12,24 +14,77 @@ interface Topic {
   templateUrl: './overview.page.html',
   styleUrls: ['./overview.page.scss']
 })
-export class OverviewPage implements OnInit {
+export class OverviewPage implements OnInit, OnDestroy {
   topics: Topic[];
+  topicsSubscription: Subscription;
 
-  constructor(public topicService: TopicService) {}
+  popularCourses: Course[];
+  popularCoursesSubscription: Subscription;
+
+  topRatedCourses: Course[];
+  topRatedCoursesSubscription: Subscription;
+
+  constructor(public topicService: TopicService, public courseService: CourseService) {}
 
   ngOnInit() {
-    this.topicService
+    this.getAllTopics();
+    this.getPopularCourses();
+    this.getTopRatedCourses();
+  }
+
+  ngOnDestroy() {
+    this.topicsSubscription?.unsubscribe();
+    this.popularCoursesSubscription?.unsubscribe();
+    this.topRatedCoursesSubscription?.unsubscribe();
+  }
+
+  getAllTopics() {
+    this.topicsSubscription = this.topicService
       .allTopics()
-      .snapshotChanges()
+      .get()
       .pipe(
         map((topics) => {
-          return topics.map((topic) => ({ id: topic.payload.doc.id, name: topic.payload.doc.data().name }));
+          return topics.docs.map((topic) => {
+            return { id: topic.id, name: topic.data().name };
+          });
         })
       )
       .subscribe((topics) => {
         this.topics = topics.sort((a, b) => {
           return a.name.localeCompare(b.name);
         });
+      });
+  }
+
+  getPopularCourses() {
+    this.popularCoursesSubscription = this.courseService
+      .somePopularCourses()
+      .get()
+      .pipe(
+        map((courses) => {
+          return courses.docs.map((course) => {
+            return { id: course.id, ...(course.data() as Course) };
+          });
+        })
+      )
+      .subscribe((courses) => {
+        this.popularCourses = courses;
+      });
+  }
+
+  getTopRatedCourses() {
+    this.topRatedCoursesSubscription = this.courseService
+      .someTopRatedCourses()
+      .get()
+      .pipe(
+        map((courses) => {
+          return courses.docs.map((course) => {
+            return { id: course.id, ...(course.data() as Course) };
+          });
+        })
+      )
+      .subscribe((courses) => {
+        this.topRatedCourses = courses;
       });
   }
 }

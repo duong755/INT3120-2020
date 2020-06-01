@@ -6,23 +6,23 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./course-item.component.scss']
 })
 export class CourseItemComponent implements OnInit {
-  @Input('displayName')
+  @Input()
   displayName: string;
 
-  @Input('organization')
+  @Input()
   organization: string;
 
-  @Input('location')
+  @Input()
   location: string;
 
-  @Input('topic')
+  @Input()
   topic: string;
 
-  @Input('rate')
-  rate: number | null;
+  @Input()
+  rate: number;
 
   @Input()
-  numberOfRate: number | null;
+  numberOfRate: number;
 
   constructor() {}
 
