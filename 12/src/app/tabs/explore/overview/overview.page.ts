@@ -15,13 +15,13 @@ interface Topic {
   styleUrls: ['./overview.page.scss']
 })
 export class OverviewPage implements OnInit, OnDestroy {
-  topics: Topic[];
+  topics: Topic[] = [];
   topicsSubscription: Subscription;
 
-  popularCourses: Course[];
+  popularCourses: Course[] = [];
   popularCoursesSubscription: Subscription;
 
-  topRatedCourses: Course[];
+  topRatedCourses: Course[] = [];
   topRatedCoursesSubscription: Subscription;
 
   constructor(public topicService: TopicService, public courseService: CourseService) {}
@@ -84,6 +84,7 @@ export class OverviewPage implements OnInit, OnDestroy {
         })
       )
       .subscribe((courses) => {
+        debugger;
         this.topRatedCourses = courses;
       });
   }

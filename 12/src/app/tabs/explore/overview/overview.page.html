@@ -27,7 +27,23 @@
       </ion-text>
     </div>
     <div class="courses--list">
-      <app-course-item *ngFor="let course of popularCourses" [displayName]="course.profile.displayName" [organization]="course.profile.organization" [location]="course.profile.location" [topic]="course.profile.topic" [rate]="course.rate.point" [numberOfRate]="course.rate.count"></app-course-item>
+      <ion-list>
+        <ion-item class="course" *ngFor="let course of popularCourses;">
+          <ion-label>
+            <div class="course--title">
+              <ion-text>{{ course.profile.displayName }}</ion-text>
+            </div>
+            <div class="course--location-organization">
+              <ion-text>{{ course.profile.organization }} &bull; {{ course.profile.location }}</ion-text>
+            </div>
+            <div class="course--topic">
+              <ion-chip [outline]="true">
+                <ion-label>{{ course.profile.topic }}</ion-label>
+              </ion-chip>
+            </div>
+          </ion-label>
+        </ion-item>
+      </ion-list>
     </div>
   </div>
 
@@ -39,7 +55,23 @@
       </ion-text>
     </div>
     <div class="courses--list">
-      <app-course-item *ngFor="let course of topRatedCourses" [displayName]="course.profile.displayName" [organization]="course.profile.organization" [location]="course.profile.location" [topic]="course.profile.topic" [rate]="course.rate.point" [numberOfRate]="course.rate.count"></app-course-item>
+      <ion-list>
+        <ion-item class="course" *ngFor="let course of topRatedCourses">
+          <ion-label>
+            <div class="course--title">
+              <ion-text>{{ course.profile.displayName }}</ion-text>
+            </div>
+            <div class="course--location-organization">
+              <ion-text>{{ course.profile.organization }} &bull; {{ course.profile.location }}</ion-text>
+            </div>
+            <div class="course--topic">
+              <ion-chip [outline]="true">
+                <ion-label>{{ course.profile.topic }}</ion-label>
+              </ion-chip>
+            </div>
+          </ion-label>
+        </ion-item>
+      </ion-list>
     </div>
   </div>
 </ion-content>
