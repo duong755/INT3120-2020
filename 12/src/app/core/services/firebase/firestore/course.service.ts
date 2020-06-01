@@ -44,7 +44,7 @@ export class CourseService {
 
   someTopRatedCourses() {
     return this.ngFireFirestore.collection<Course>('courses', (ref) =>
-      ref.orderBy('rating.point').orderBy('rating.count').limit(5)
+      ref.orderBy('rating.point', 'desc').orderBy('rating.count', 'desc').limit(5)
     );
   }
 }
