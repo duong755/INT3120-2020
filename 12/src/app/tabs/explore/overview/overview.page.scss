@@ -14,7 +14,7 @@ ion-button {
   align-items: center;
 
   .explore-header--title {
-    font-size: 1.5em;
+    font-size: 1.6em;
     font-weight: 500 !important;
   }
 }
@@ -27,7 +27,7 @@ ion-button {
     align-items: center;
 
     .courses--title {
-      font-size: 1.2em;
+      font-size: 1.4em;
       font-weight: 500;
     }
 
@@ -41,5 +41,14 @@ ion-button {
   .courses--list {
     overflow: auto;
     white-space: nowrap;
+  }
+}
+
+.course {
+  .course--title {
+    ion-text {
+      font-weight: 500;
+      font-size: 1.2em;
+    }
   }
 }

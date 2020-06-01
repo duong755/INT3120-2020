@@ -84,7 +84,6 @@ export class OverviewPage implements OnInit, OnDestroy {
         })
       )
       .subscribe((courses) => {
-        debugger;
         this.topRatedCourses = courses;
       });
   }
