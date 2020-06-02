@@ -58,7 +58,7 @@ export class OverviewPage implements OnInit, OnDestroy {
 
   getPopularCourses() {
     this.popularCoursesSubscription = this.courseService
-      .somePopularCourses()
+      .somePopularCourses(3)
       .get()
       .pipe(
         map((courses) => {
@@ -74,7 +74,7 @@ export class OverviewPage implements OnInit, OnDestroy {
 
   getTopRatedCourses() {
     this.topRatedCoursesSubscription = this.courseService
-      .someTopRatedCourses()
+      .someTopRatedCourses(3)
       .get()
       .pipe(
         map((courses) => {

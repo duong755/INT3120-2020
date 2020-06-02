@@ -1,10 +1,28 @@
 <ion-header>
   <ion-toolbar color="medium">
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-back-button class="show-back-button"></ion-back-button>
     </ion-buttons>
     <ion-title>Top-rated courses</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content> </ion-content>
+<ion-content>
+  <ion-list>
+    <ion-item class="course" *ngFor="let course of topRatedCourses">
+      <ion-label>
+        <div class="course--title">
+          <ion-text>{{ course.profile.displayName }}</ion-text>
+        </div>
+        <div class="course--location-organization">
+          <ion-text color="medium">{{ course.profile.organization }} &bull; {{ course.profile.location }}</ion-text>
+        </div>
+        <div class="course--topic">
+          <ion-chip [outline]="true">
+            <ion-label>{{ course.profile.topic }}</ion-label>
+          </ion-chip>
+        </div>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

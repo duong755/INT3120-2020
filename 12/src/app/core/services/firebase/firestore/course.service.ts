@@ -38,13 +38,13 @@ export interface Course {
 export class CourseService {
   constructor(private ngFireFirestore: AngularFirestore) {}
 
-  somePopularCourses() {
-    return this.ngFireFirestore.collection<Course>('courses', (ref) => ref.orderBy('members.count', 'desc').limit(5));
+  somePopularCourses(n: number) {
+    return this.ngFireFirestore.collection<Course>('courses', (ref) => ref.orderBy('members.count', 'desc').limit(n));
   }
 
-  someTopRatedCourses() {
+  someTopRatedCourses(n: number) {
     return this.ngFireFirestore.collection<Course>('courses', (ref) =>
-      ref.orderBy('rating.point', 'desc').orderBy('rating.count', 'desc').limit(5)
+      ref.orderBy('rating.point', 'desc').orderBy('rating.count', 'desc').limit(n)
     );
   }
 }

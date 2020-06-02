@@ -6,10 +6,13 @@ import { IonicModule } from '@ionic/angular';
 
 import { PopularCoursesPageRoutingModule } from './popular-courses-routing.module';
 
+import { CourseService } from '../../../core/services/firebase/firestore/course.service';
+
 import { PopularCoursesPage } from './popular-courses.page';
 
 @NgModule({
   imports: [CommonModule, FormsModule, IonicModule, PopularCoursesPageRoutingModule],
-  declarations: [PopularCoursesPage]
+  declarations: [PopularCoursesPage],
+  providers: [CourseService]
 })
 export class PopularCoursesPageModule {}
