@@ -14,38 +14,8 @@
     </ion-button>
   </div>
   <div class="topics ion-padding-horizontal">
-    <ion-chip [outline]="true">
-      <ion-label>Arts and Humanities</ion-label>
-    </ion-chip>
-    <ion-chip [outline]="true">
-      <ion-label>Business</ion-label>
-    </ion-chip>
-    <ion-chip [outline]="true">
-      <ion-label>Computer Science</ion-label>
-    </ion-chip>
-    <ion-chip [outline]="true">
-      <ion-label>Data Science</ion-label>
-    </ion-chip>
-    <ion-chip [outline]="true">
-      <ion-label>Information Technology</ion-label>
-    </ion-chip>
-    <ion-chip [outline]="true">
-      <ion-label>Health</ion-label>
-    </ion-chip>
-    <ion-chip [outline]="true">
-      <ion-label>Math and Logic</ion-label>
-    </ion-chip>
-    <ion-chip [outline]="true">
-      <ion-label>Personal Development</ion-label>
-    </ion-chip>
-    <ion-chip [outline]="true">
-      <ion-label>Physical Science and Engineering</ion-label>
-    </ion-chip>
-    <ion-chip [outline]="true">
-      <ion-label>Social Sciences</ion-label>
-    </ion-chip>
-    <ion-chip [outline]="true">
-      <ion-label>Language Learning</ion-label>
+    <ion-chip [outline]="true" *ngFor="let topic of topics">
+      <ion-label>{{ topic.name }}</ion-label>
     </ion-chip>
   </div>
 
@@ -57,11 +27,23 @@
       </ion-text>
     </div>
     <div class="courses--list">
-      <app-course-item></app-course-item>
-      <app-course-item></app-course-item>
-      <app-course-item></app-course-item>
-      <app-course-item></app-course-item>
-      <app-course-item></app-course-item>
+      <ion-list>
+        <ion-item class="course" *ngFor="let course of popularCourses;">
+          <ion-label>
+            <div class="course--title">
+              <ion-text>{{ course.profile.displayName }}</ion-text>
+            </div>
+            <div class="course--location-organization">
+              <ion-text>{{ course.profile.organization }} &bull; {{ course.profile.location }}</ion-text>
+            </div>
+            <div class="course--topic">
+              <ion-chip [outline]="true">
+                <ion-label>{{ course.profile.topic }}</ion-label>
+              </ion-chip>
+            </div>
+          </ion-label>
+        </ion-item>
+      </ion-list>
     </div>
   </div>
 
@@ -73,11 +55,23 @@
       </ion-text>
     </div>
     <div class="courses--list">
-      <app-course-item></app-course-item>
-      <app-course-item></app-course-item>
-      <app-course-item></app-course-item>
-      <app-course-item></app-course-item>
-      <app-course-item></app-course-item>
+      <ion-list>
+        <ion-item class="course" *ngFor="let course of topRatedCourses">
+          <ion-label>
+            <div class="course--title">
+              <ion-text>{{ course.profile.displayName }}</ion-text>
+            </div>
+            <div class="course--location-organization">
+              <ion-text>{{ course.profile.organization }} &bull; {{ course.profile.location }}</ion-text>
+            </div>
+            <div class="course--topic">
+              <ion-chip [outline]="true">
+                <ion-label>{{ course.profile.topic }}</ion-label>
+              </ion-chip>
+            </div>
+          </ion-label>
+        </ion-item>
+      </ion-list>
     </div>
   </div>
 </ion-content>

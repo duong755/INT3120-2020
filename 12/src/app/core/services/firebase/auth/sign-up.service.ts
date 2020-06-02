@@ -15,7 +15,7 @@ export class SignUpService {
 
   signUpWithEmailAndPassword(email: string, password: string, fullName: string) {
     return new Observable<firebase.User>((observer) => {
-      this.ngFireAuth.auth
+      this.ngFireAuth
         .createUserWithEmailAndPassword(email, password)
         .then((userCredentials) => {
           if (userCredentials) {
